@@ -1,0 +1,38 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+context: |
+  Project: SkillForge — AI Skills sharing & management platform (MVP).
+  Mode: team development; MVP-first, demoable in ~10 working days.
+
+  Backend: Java 17 + Spring Boot 3.x (Maven).
+    - Layered: Controller / Service / Repository / Security.
+    - Unified Result<T> response wrapper; global @RestControllerAdvice + BusinessException with error codes (4010/4030/4040/4091...).
+    - Auth: BCrypt password hashing + stateless JWT (HS256); roles USER / ADMIN.
+    - Persistence: MyBatis-Plus over PostgreSQL (primary). schema.sql/init for DDL + seed admin account.
+    - springdoc-openapi for API docs.
+
+  Frontend: React + Vite + Tailwind CSS + Base UI (@base-ui/react, the headless/unstyled library from base-ui.com).
+    - Base UI provides behavior + a11y only; ALL styling is Tailwind. No CSS-in-JS engine; no preflight conflict.
+    - Subpath imports, e.g. import { Popover } from '@base-ui/react/popover'.
+    - React Router (route guards), TanStack Query (server state + loading/error/empty states),
+      React Hook Form + Zod (forms & validation, schema-aligned with backend), Axios interceptors (inject JWT, unwrap Result<T>).
+    - Auth state via React Context (no Redux).
+
+  Database: PostgreSQL primary. (No H2 demo fallback — single DB.)
+    - Provided locally via docker compose (root docker-compose.yml: postgres service + persistent volume + healthcheck).
+  Repo layout: monorepo, two top-level dirs — backend/ (Spring Boot) + frontend/ (React/Vite); root holds docker-compose.yml + README.
+  Critical subsystems: Prompt {{var}} engine (dual front/back validation), Skill audit state machine
+    (PENDING/PUBLISHED/OFFLINE/REJECTED; marketplace = PUBLISHED only).
+  Conventions: kebab-case capability names; Result<T> on every endpoint; validate on both ends.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours

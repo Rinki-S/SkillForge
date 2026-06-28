@@ -1,0 +1,79 @@
+# ──────────────────────────────────────────────
+# SkillForge root .gitignore
+# Monorepo: backend/ (Spring Boot, Maven) + frontend/ (React, Vite)
+# ──────────────────────────────────────────────
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE / editors ──
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ── Logs ──
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Env / secrets ──
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ──────────────────────────────────────────────
+# Backend — Java / Maven (backend/)
+# ──────────────────────────────────────────────
+**/target/
+**/build/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven wrapper is committed; ignore local state
+.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot
+**/spring-shell.log
+
+# ──────────────────────────────────────────────
+# Frontend — Node / Vite / React (frontend/)
+# ──────────────────────────────────────────────
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/.vite/
+**/coverage/
+*.tsbuildinfo
+.eslintcache
+
+# Build outputs / caches
+**/.parcel-cache/
+**/.turbo/
+
+# ──────────────────────────────────────────────
+# PostgreSQL (docker compose volume)
+# ──────────────────────────────────────────────
+pgdata/
+postgres-data/
+*.sql.bak
+
+# ── Local OpenSpec scratch (keep tracked changes/specs; ignore working files only if needed) ──
+# (Intentionally not ignoring openspec/ — change proposals & specs are tracked.)
