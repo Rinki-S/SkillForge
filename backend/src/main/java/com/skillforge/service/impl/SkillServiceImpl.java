@@ -153,6 +153,11 @@ public class SkillServiceImpl implements SkillService {
             throw new BusinessException(ErrorCode.SKILL_NOT_FOUND);
         }
 
+        // Load variables
+        QueryWrapper<SkillVariable> varQ = new QueryWrapper<>();
+        varQ.eq("skill_id", skillId).orderByAsc("sort_order");
+        skill.setVariables(skillVariableMapper.selectList(varQ));
+
         // Load author name
         User author = userMapper.selectById(skill.getAuthorId());
         if (author != null) {
@@ -184,6 +189,22 @@ public class SkillServiceImpl implements SkillService {
         favQ.eq("skill_id", skillId);
         skill.setFavoriteCount(favoriteMapper.selectCount(favQ));
 
+        return skill;
+    }
+
+    @Override
+    public Skill getAuthorSkillDetail(Long skillId, Long userId) {
+        Skill skill = skillMapper.selectById(skillId);
+        if (skill == null) {
+            throw new BusinessException(ErrorCode.SKILL_NOT_FOUND);
+        }
+        if (!skill.getAuthorId().equals(userId)) {
+            throw new BusinessException(ErrorCode.NOT_SKILL_AUTHOR);
+        }
+        QueryWrapper<SkillVariable> varQ = new QueryWrapper<>();
+        varQ.eq("skill_id", skillId).orderByAsc("sort_order");
+        skill.setVariables(skillVariableMapper.selectList(varQ));
+        enrichSkillList(java.util.List.of(skill));
         return skill;
     }
 

@@ -54,6 +54,9 @@ public class Skill {
     @TableField(exist = false)
     private Long reviewCount;
 
+    @TableField(exist = false)
+    private java.util.List<SkillVariable> variables;
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; }
@@ -92,4 +95,6 @@ public class Skill {
     public void setFavoriteCount(Long favoriteCount) { this.favoriteCount = favoriteCount; }
     public Long getReviewCount() { return reviewCount; }
     public void setReviewCount(Long reviewCount) { this.reviewCount = reviewCount; }
+    public java.util.List<SkillVariable> getVariables() { return variables; }
+    public void setVariables(java.util.List<SkillVariable> variables) { this.variables = variables; }
 }

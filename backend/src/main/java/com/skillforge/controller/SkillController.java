@@ -70,6 +70,13 @@ public class SkillController {
         return Result.success(skillService.createSkill(request, userId));
     }
 
+    @GetMapping("/{id}")
+    public Result<Skill> mySkillDetail(@PathVariable Long id, Authentication auth) {
+        Long userId = (Long) auth.getPrincipal();
+        Skill skill = skillService.getAuthorSkillDetail(id, userId);
+        return Result.success(skill);
+    }
+
     @PutMapping("/{id}")
     public Result<Skill> update(@PathVariable Long id,
                                 @Valid @RequestBody SkillCreateRequest request,
