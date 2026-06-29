@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/skillforge
-    username: skillforge
-    password: skillforge_dev
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/skillforge}
+    username: ${SPRING_DATASOURCE_USERNAME:skillforge}
+    password: ${SPRING_DATASOURCE_PASSWORD:skillforge_dev}
     driver-class-name: org.postgresql.Driver
   sql:
     init:
