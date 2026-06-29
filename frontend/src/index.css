@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: #1d1d1b;
+    background: #f7f7f4;
+    font-family:
+      Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+      linear-gradient(180deg, rgba(59, 110, 240, 0.05), transparent 220px),
+      #f7f7f4;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::selection {
+    background: #dce6ff;
+    color: #1d1d1b;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-5 sm:px-6 lg:px-8;
+  }
+
+  .sf-card {
+    @apply rounded-lg border border-console-line bg-console-panel p-4 shadow-soft;
+  }
+
+  .sf-label {
+    @apply text-xs font-semibold text-console-muted;
+  }
+
+  .sf-input {
+    @apply w-full rounded-md border border-console-line bg-white px-3 py-2 text-sm text-console-ink outline-none transition placeholder:text-console-muted/70 focus:border-console-orange focus:ring-2 focus:ring-console-orange/20 disabled:cursor-not-allowed disabled:bg-console-subtle;
+  }
+
+  .sf-error {
+    @apply text-sm font-medium text-red-700;
+  }
+
+  .sf-panel-header {
+    @apply border-b border-console-line px-4 py-3;
+  }
+
+  .sf-kicker {
+    @apply text-xs font-semibold text-console-muted;
+  }
+
+  .sf-resource-row {
+    @apply border-b border-console-line px-4 py-3 transition last:border-b-0 hover:bg-console-orangeSoft/35;
+  }
+
+  .sf-code-surface {
+    @apply whitespace-pre-wrap rounded-md border border-black/10 bg-console-code p-4 font-mono text-xs leading-6 text-white;
+  }
+}
+
+/* Kumo standalone CSS is loaded before this app's Tailwind 3 bundle. Re-declare
+   the Kumo ring color utilities after Tailwind so `.ring` does not fall back to
+   Tailwind's default blue when both classes are present on Kumo components. */
+.ring-kumo-line {
+  --tw-ring-color: rgb(217 217 211 / 1);
+}
+
+.ring-kumo-hairline {
+  --tw-ring-color: rgb(237 237 232 / 1);
+}
+
+.ring-kumo-focus {
+  --tw-ring-color: rgb(29 29 27 / 1);
+}
+
+.ring-kumo-interact {
+  --tw-ring-color: rgb(217 217 211 / 1);
+}
+
+.ring-kumo-danger {
+  --tw-ring-color: rgb(220 38 38 / 1);
+}
+
+.ring-kumo-contrast {
+  --tw-ring-color: rgb(29 29 27 / 1);
+}
